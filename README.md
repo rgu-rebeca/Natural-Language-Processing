@@ -225,7 +225,7 @@ However:
 - GPU dependency for transformers  
 - Data alignment issues during augmentation  
 
----
+
 
 ## 🧠 Key Conclusions
 
@@ -235,7 +235,7 @@ However:
 - DistilBERT significantly improves minority class performance.  
 - Model choice depends on computational resources and business needs.  
 
----
+
 
 ## 🚀 Future Work
 
@@ -245,7 +245,7 @@ However:
 - Try ensemble approaches  
 - Deploy model and monitor real-world drift  
 
----
+
 
 ## 🛠 Technical Stack
 
@@ -256,7 +256,7 @@ However:
 - matplotlib, wordcloud  
 - Google Colab (GPU)  
 
----
+
 
 ## 🎯 Final Reflection
 
