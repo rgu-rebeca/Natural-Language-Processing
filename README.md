@@ -35,17 +35,17 @@ http://jmcauley.ucsd.edu/data/amazon/
 
 Each dataset contains:
 
--Review text
+- Review text
 
--Star rating (1–5)
+- Star rating (1–5)
 
--Label Transformation
+- Label Transformation
 
 Ratings were converted into binary labels:
 
- -Low ratings → Negative (class 0)
+ - Low ratings → Negative (class 0)
 
- -High ratings → Positive (class 1)
+ - High ratings → Positive (class 1)
 
 Both datasets show strong class imbalance, with significantly more positive reviews.
 
@@ -53,36 +53,36 @@ Both datasets show strong class imbalance, with significantly more positive revi
 
 Performed analyses include:
 
--Rating distribution
+- Rating distribution
 
--Class distribution
+- Class distribution
 
--Most frequent n-grams
+- Most frequent n-grams
 
--Word clouds (positive vs negative)
+- Word clouds (positive vs negative)
 
--Word2Vec embedding visualization (Automotive dataset)
+- Word2Vec embedding visualization (Automotive dataset)
 
 Key insight:
 
--Positive reviews dominate.
+- Positive reviews dominate.
 
--Clear lexical differences exist between positive and negative reviews.
+- Clear lexical differences exist between positive and negative reviews.
 
--Stopwords dominate raw frequency analysis, confirming the need for preprocessing.
+- Stopwords dominate raw frequency analysis, confirming the need for preprocessing.
 ## 🧹 Preprocessing Pipeline
 
 Implemented steps:
 
--Lowercasing
+- Lowercasing
 
--Removal of punctuation / non-alphabetic characters
+- Removal of punctuation / non-alphabetic characters
 
--Stopword removal (special handling for "no")
+- Stopword removal (special handling for "no")
 
--Tokenization
+- Tokenization
 
--Removal of empty reviews
+- Removal of empty reviews
 
 In the Baby dataset, 100,000 samples were loaded and cleaned before modeling.
 
@@ -91,13 +91,13 @@ TF-IDF Vectorization
 
 Configuration (Baby dataset):
 
--max_df=0.95
+- max_df=0.95
 
--min_df=3
+- min_df=3
 
--max_features=2500
+- max_features=2500
 
--ngram_range=(1,2)
+- ngram_range=(1,2)
 
 Trigrams were tested but introduced noise.
 
@@ -109,17 +109,17 @@ Chi-square feature analysis confirmed strong discriminative vocabulary terms.
 
 **TF-IDF + Support Vector Machine (SVM)**
 
--Hyperparameter tuning with GridSearchCV
+- Hyperparameter tuning with GridSearchCV
 
--Optimized regularization parameter C
+- Optimized regularization parameter C
 
--~80% accuracy
+- ~80% accuracy
 
 Issue identified:
 
--Strong bias toward majority class
+- Strong bias toward majority class
 
--Many negative reviews misclassified
+- Many negative reviews misclassified
 
 ## Data Augmentation – Back Translation
 
@@ -130,17 +130,17 @@ Using MarianMT transformer models
 
 Due to computational constraints:
 
--Initially planned: 5000 samples
+- Initially planned: 5000 samples
 
--Final implementation: 2000 samples
+- Final implementation: 2000 samples
 
 Result:
 
--Slight improvement in validation score
+- Slight improvement in validation score
 
--Limited improvement in minority recall
+- Limited improvement in minority recall
 
--High computational cost relative to performance gain
+- High computational cost relative to performance gain
 
 
 ## 👶 Baby Dataset
@@ -148,25 +148,25 @@ Result:
 
 Configuration:
 
--Class weight = balanced
+- Class weight = balanced
 
--GridSearch over C values
+- GridSearch over C values
 
--5-fold cross-validation
+- 5-fold cross-validation
 
--Optimized using f1_macro
+- Optimized using f1_macro
 
 Additional step:
 
--Probability threshold tuning to improve precision for class 0
+- Probability threshold tuning to improve precision for class 0
 
 **Results:**
 
--ROC-AUC: 0.909
+- ROC-AUC: 0.909
 
--Strong performance for majority class
+- Strong performance for majority class
 
--Minority class still challenging
+- Minority class still challenging
 
 ### 2️⃣ Transfer Learning – DistilBERT
 
@@ -174,37 +174,37 @@ Additional step:
 
 Reasons for selection:
 
--40% smaller than BERT-base
+- 40% smaller than BERT-base
 
--Retains ~97% of BERT performance
+- Retains ~97% of BERT performance
 
--More computationally efficient
+- More computationally efficient
 
 Training details:
 
--Max length: 128
+- Max length: 128
 
--Batch size: 16
+- Batch size: 16
 
--Epochs: 3
+- Epochs: 3
 
--GPU training (~2 hours)
+- GPU training (~2 hours)
 
--Best model selected by f1_macro
+- Best model selected by f1_macro
 
 **Results:**
 
--Significant improvement in minority class precision
+- Significant improvement in minority class precision
 
--Higher macro F1 score
+- Higher macro F1 score
 
--Better contextual understanding
+- Better contextual understanding
 
 However:
 
--Slightly lower ROC-AUC than Logistic Regression
+- Slightly lower ROC-AUC than Logistic Regression
 
--Much higher computational cost
+- Much higher computational cost
 
 ## 📊 Traditional ML vs Transfer Learning
 
