@@ -1,6 +1,6 @@
 # Natural-Language-Processing
 
-🧠 Sentiment Analysis on Amazon Reviews
+## 🧠 Sentiment Analysis on Amazon Reviews
 
 Traditional Machine Learning vs. Transfer Learning
 
