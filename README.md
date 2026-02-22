@@ -5,6 +5,7 @@
 Traditional Machine Learning vs. Transfer Learning
 
 Author: Rebeca (Ruijia) Gu
+
 Date: 2026-02-22
 
 ## 📌 Project Overview
